@@ -1,240 +1,283 @@
+/** Bold */
 
-main {
-	display: flex;
-	flex: 1;
-	background: #000;
-	justify-content: center;
-	align-items: center;
-	flex-direction: row-reverse;
+@font-face {
+    font-family: "SF Display";
+    font-weight: 700;
+    src: url("https://sf.abarba.me/SF-UI-Display-Bold.otf");
 }
-.title{
-	color: rgba(255,255,255,0.07);
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	position: absolute;
-	transition: opacity 0.4s;
+
+
+/** Light */
+
+@font-face {
+    font-family: "SF Display";
+    font-weight: 200;
+    src: url("https://sf.abarba.me/SF-UI-Display-Light.otf");
 }
-.title p{
-	font-size: 14vw;
+
+
+/** Medium */
+
+@font-face {
+    font-family: "SF Display";
+    font-weight: 500;
+    src: url("https://sf.abarba.me/SF-UI-Display-Medium.otf");
 }
-.title .title__svg{
-	width: 17vw;
-	height: 34vw;
-	overflow: hidden;
-	position: relative;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+
+
+/** Regular */
+
+@font-face {
+    font-family: "SF Display";
+    font-weight: 400;
+    src: url("https://sf.abarba.me/SF-UI-Display-Regular.otf");
 }
-.title .title__svg video{
-	width: 95%;
-	height: 95%;
-	object-fit: cover;
+
+
+/** Semibold */
+
+@font-face {
+    font-family: "SF Display";
+    font-weight: 600;
+    src: url("https://sf.abarba.me/SF-UI-Display-Semibold.otf");
 }
-.title .title__svg svg { 
-	width: 100%;
-	position:absolute;
-	top: 0;
-	left: 0;
-	height: 100%;
+
+
+/** Thin */
+
+@font-face {
+    font-family: "SF Display";
+    font-weight: 300;
+    src: url("https://sf.abarba.me/SF-UI-Display-Thin.otf");
 }
-.title .title__svg svg text {
-	font-family: 'Major Mono Display', monospace;
-	text-transform: uppercase;
-	transform-origin: center center;
-	font-size: 3em;
+
+
+/** Ultralight */
+
+@font-face {
+    font-family: "SF Display";
+    font-weight: 100;
+    src: url("https://sf.abarba.me/SF-UI-Display-Ultralight.otf");
 }
-.title .title__svg  svg rect {
-	fill: #fff;
+
+.main {
+    display: flex;
+    flex: 1;
+    background: #000;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row-reverse;
+    position: absolute;
 }
-.title .title__svg  svg > rect {
-	-webkit-mask: url(#mask);
-	mask: url(#mask);
-	fill: #000;
+
+.title {
+    color: rgba(255, 255, 255, 0.07);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    transition: opacity 0.4s;
 }
+
 .iphonex {
-	width: 20em;
-	height: 40em;
-	display: flex;
-	position: absolute;
-	transform: rotate(0deg);
-	transition: all cubic-bezier(0.36, 0.41, 0.38, 1) 0.4s;
-	z-index: 10;
-}
-.iphonex:hover{
-	transform: rotate(0deg) scale(0.95);
-	margin-right: 0%;
-}
-.iphonex:hover ~ .title{
-	opacity: 0;
-}
-.iphonex .back {
-	display: flex;
-	flex: 1;
-	margin: 0.2em;
-	border-radius: 3em;
-	position: absolute;
-	z-index: 1;
-	width: calc( 100% - 0.6em );
-	height: calc( 100% - 0.6em );
-	top: 0;
-	right: 0;
-	box-shadow: 0 0 10em rgba(70, 70, 70, 0.1);
-	transition: all 0.4s;
-}
-.iphonex:hover .back{
-	box-shadow: 0 0 15em rgba(70, 70, 70, 0.4);
-}
-.iphonex .front {
-	display: flex;
-	flex: 1;
-	background-color: #292c2d;
-	border-radius: 3em;
-	margin: 0.2em;
-	overflow: hidden;
-	position: relative;
-	box-shadow: 0 0.1em 0.4em rgba(255, 255, 255, 0.1) inset;
-	z-index: 10;
-}
-.iphonex .screen{
-	display: flex;
-	flex: 1;
-	background-color: #191b1c;
-	margin: 0.4em;
-	border-radius: 2.6em;
-	border: solid 0.2em #121415;
-	position: relative;
-	z-index: 10;
-}
-.iphonex .front__line{
-	background: linear-gradient(to right, #515455, #454748, #515455);
-	position: absolute;
-	z-index: 8;
-	width: 100%;
-	height: 0.5em;
-	top: 10%
-}
-.iphonex .front__line-second{
-	top: 90%
-}
-.iphonex .screen .screen__view{
-	display: flex;
-	flex: 1;
-	margin: 0.6em;
-	border-radius: 2em;
-	overflow: hidden;
-	position: relative;
-	width: 100%;  
-	position: relative;
-	align-items: center;
-	justify-content: center;
-}
-.iphonex .screen .screen__view:after{
-	transform:  translateY(100%) scaleX(1.4);
-	opacity: 0.3;
-	transition: all ease 0.5s 0.1s;
-}
-.iphonex .screen .screen__view:before{
-	transform:  translateY(100%) scaleX(1.4);
-	opacity: 1;
-	z-index: 40;
-	transition: all ease 0.6s;
-}
-.iphonex .screen:hover .screen__view:before{
-	transform:  translateY(10%) scaleX(1.4);
-	transition: all ease 0.9s 0.2s;
-}
-.iphonex .screen .screen__front{
-	position: absolute;
-	width: 50%;
-	background-color: #191b1c;
-	height: 1.8em;
-	border-radius: 0 0 0.9em 0.9em;
-	right: 25%;
-	top: 0px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding-bottom: 0.3em;
-	box-sizing: border-box;
-	margin-top: 0.5em;
-	z-index: 999;
-}
-.iphonex .screen .screen__front::after,.iphonex .screen .screen__front::before{
-	content: "";
-	width: 10%;
-	height: 50%;
-	position: absolute;
-	background: transparent;
-	top: -0.3em;
-	border: solid 0.4em #191b1c;
-	border-bottom: 0;
-}
-.iphonex .screen .screen__front::after{
-	left:0.4em;
-	transform: translateX(-100%);
-	border-left: 0;
-	border-radius: 0 0.7em 0 0;
-}
-.iphonex .screen .screen__front::before{
-	right:0.4em;
-	transform: translateX(100%);
-	border-right: 0;
-	border-radius: 0.7em 0 0 0;
-}
-.iphonex .screen .screen__front-speaker{
-	background: #070808;
-	border-radius: 0.2em;
-	height: 0.35em;
-	width: 28%;
-}
-.iphonex .screen .screen__front-camera{
-	height: 0.35em;
-	width: 0.35em;
-	background: #272727;
-	margin-left: .5em;
-	border-radius: 50%;
-	margin-right: -0.8em;
-}
-.iphonex .phoneButtons{
-	width: 1em;
-	height: 6em;
-	position: absolute;
-	z-index: 2;
-	background: linear-gradient(to bottom, #212324, #2b2e31,#212324);
-	box-shadow: 0 0 0.4em rgba(255, 255, 255, 0.1) inset;
-	border-radius: 2px;
-}
-.iphonex .phoneButtons-right{
-	right: 0;
-	top: 30%;
-}
-.iphonex .phoneButtons-left{
-	left: 0;
-	top: 15%;
-	height: 3em;
-}
-.iphonex .phoneButtons-left2{
-	left: 0;
-	top: 25%;
-	height: 5em;
-}
-.iphonex .phoneButtons-left3{
-	left: 0;
-	top: calc( 25% + 6em);
-	height: 5em;
+    font-family: "SF Display";
+    font-weight: 400;
+    width: 20em;
+    height: 40em;
+    display: flex;
+    position: absolute;
+    transform: rotate(0deg);
+    transition: all cubic-bezier(0.36, 0.41, 0.38, 1) 0.4s;
+    z-index: 10;
 }
 
-@media (max-height: 40em){
-	body{
-		font-size: 70%;
-	}
-	.iphonex {
-		width: 48vh;
-		height: 94vh;
-	}
-	.title .title__svg svg text{
-		font-size: 4em;
-	}
+.iphonex .back {
+    display: flex;
+    flex: 1;
+    margin: 0.2em;
+    border-radius: 3em;
+    position: absolute;
+    z-index: 1;
+    width: calc( 100% - 0.6em);
+    height: calc( 100% - 0.6em);
+    top: 0;
+    right: 0;
+    box-shadow: 0 0 10em rgba(70, 70, 70, 0.1);
+    transition: all 0.4s;
+}
+
+.iphonex:hover .back {
+    box-shadow: 0 0 15em rgba(70, 70, 70, 0.4);
+}
+
+.iphonex .front {
+    display: flex;
+    flex: 1;
+    background-color: #292c2d;
+    border-radius: 3em;
+    margin: 0.2em;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0.1em 0.4em rgba(255, 255, 255, 0.1) inset;
+    z-index: 10;
+}
+
+.iphonex .screen {
+    display: flex;
+    flex: 1;
+    background-color: #191b1c;
+    margin: 0.4em;
+    border-radius: 2.6em;
+    border: solid 0.2em #121415;
+    position: relative;
+    z-index: 10;
+}
+
+.iphonex .front__line {
+    background: linear-gradient(to right, #515455, #454748, #515455);
+    position: absolute;
+    z-index: 8;
+    width: 100%;
+    height: 0.5em;
+    top: 10%
+}
+
+.iphonex .front__line-second {
+    top: 90%
+}
+
+.iphonex .screen .screen__view {
+    display: flex;
+    flex: 1;
+    margin: 0.6em;
+    border-radius: 2em;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+
+.iphonex .screen .screen__view:after {
+    transform: translateY(100%) scaleX(1.4);
+    opacity: 0.3;
+    transition: all ease 0.5s 0.1s;
+}
+
+.iphonex .screen .screen__view:before {
+    transform: translateY(100%) scaleX(1.4);
+    opacity: 1;
+    z-index: 40;
+    transition: all ease 0.6s;
+}
+
+.iphonex .screen:hover .screen__view:before {
+    transform: translateY(10%) scaleX(1.4);
+    transition: all ease 0.9s 0.2s;
+}
+
+.iphonex .screen .screen__front {
+    position: absolute;
+    width: 50%;
+    background-color: #191b1c;
+    height: 1.8em;
+    border-radius: 0 0 0.9em 0.9em;
+    right: 25%;
+    top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 0.3em;
+    box-sizing: border-box;
+    margin-top: 0.5em;
+    z-index: 999;
+}
+
+.iphonex .screen .screen__front::after,
+.iphonex .screen .screen__front::before {
+    content: "";
+    width: 10%;
+    height: 50%;
+    position: absolute;
+    background: transparent;
+    top: -0.3em;
+    border: solid 0.4em #191b1c;
+    border-bottom: 0;
+}
+
+.iphonex .screen .screen__front::after {
+    left: 0.4em;
+    transform: translateX(-100%);
+    border-left: 0;
+    border-radius: 0 0.7em 0 0;
+}
+
+.iphonex .screen .screen__front::before {
+    right: 0.4em;
+    transform: translateX(100%);
+    border-right: 0;
+    border-radius: 0.7em 0 0 0;
+}
+
+.iphonex .screen .screen__front-speaker {
+    background: #070808;
+    border-radius: 0.2em;
+    height: 0.35em;
+    width: 28%;
+}
+
+.iphonex .screen .screen__front-camera {
+    height: 0.35em;
+    width: 0.35em;
+    background: #272727;
+    margin-left: .5em;
+    border-radius: 50%;
+    margin-right: -0.8em;
+}
+
+.iphonex .phoneButtons {
+    width: 1em;
+    height: 6em;
+    position: absolute;
+    z-index: 2;
+    background: linear-gradient(to bottom, #212324, #2b2e31, #212324);
+    box-shadow: 0 0 0.4em rgba(255, 255, 255, 0.1) inset;
+    border-radius: 2px;
+}
+
+.iphonex .phoneButtons-right {
+    right: 0;
+    top: 30%;
+}
+
+.iphonex .phoneButtons-left {
+    left: 0;
+    top: 15%;
+    height: 3em;
+}
+
+.iphonex .phoneButtons-left2 {
+    left: 0;
+    top: 25%;
+    height: 5em;
+}
+
+.iphonex .phoneButtons-left3 {
+    left: 0;
+    top: calc( 25% + 6em);
+    height: 5em;
+}
+
+@media (max-height: 40em) {
+    body {
+        font-size: 70%;
+    }
+    .iphonex {
+        width: 48vh;
+        height: 94vh;
+    }
+    .title .title__svg svg text {
+        font-size: 4em;
+    }
 }
