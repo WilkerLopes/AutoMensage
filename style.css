@@ -87,11 +87,9 @@ html {
 
 .ladoEsq {
     margin: 0;
-    background-color: aqua;
 }
 
 .ladoDir {
-    background-color: red;
     display: flex;
     justify-content: center;
     align-items: center;
