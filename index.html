@@ -1,127 +1,146 @@
 <!DOCTYPE html>
-<html lang="pt-BR"> 
+<html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Auto Mensagem</title>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="celular.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Mensagem</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="celular.css">
 </head>
 
 <body>
-<div class="preloader">
-  <div class="preloader-wrapper big active">
-    <div class="spinner-layer spinner-teal-only">
-      <div class="circle-clipper left">
-        <div class="circle"></div>
-      </div><div class="gap-patch">
-        <div class="circle"></div>
-      </div><div class="circle-clipper right">
-        <div class="circle"></div>
-      </div>
-    </div>
-  </div>
-</div>
-  <nav>
-    <div class="nav-wrapper teal">
-      <div class="content">
-        <a href="#!" class="brand-logo center">Auto Msg</a>
-        <ul id="nav-mobile" class="right ">
-          <li><a href="#!"><i   class="material-icons">nights_stay</i></a></li>
-        </ul>
-        <ul id="nav-mobile" class="left ">
-          <li><a href="#!" id="toggleFavorite"><i   class="material-icons">star_border</i></a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <div class="telaApp">
-    <div class="content">
-      <div class="row">
-        <div class="col m7 s12 ladoEsq">
-          <div class="col s12">
-            <a class="waves-effect waves-light btn disabled">Modelo de mensagens</a>
-          </div>
-          <div class="divider"></div>
-          <div class="input-field col s12">
-            <i class="material-icons prefix">comment</i>
-            <input id="msg" type="text" class="validate "   placeholder="Sua mensagem...">
-            <label for="msg">Mensagem</label>
-          </div>
-          <div class="input-field col s12">
-            <i class="material-icons prefix">phone</i>
-            <input inputmode="numeric" id="telefone" type="text" class="validate  celular" placeholder="9 1234-1234">
-            <label for="telefone">Telefone</label>
-          </div>
-          <div class="col s12 center mbtn">
-            <a class="waves-effect waves-light btn-small  " onclick="proximo(-1)"> <i class="material-icons">keyboard_arrow_left</i></a>
-            <a class="waves-effect waves-light btn-small" id="ligar"><i class="material-icons">call</i></a>
-            <a class="waves-effect waves-light btn-small"   id="enviarMsg"><i class="fab fa-whatsapp"></i></a>
-            <a class="waves-effect waves-light btn-small" onclick="proximo(+1)"> <i class="material-icons">keyboard_arrow_right</i></a>
-          </div>
+    <div class="preloader">
+        <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-teal-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
         </div>
-
-        <div class="col m5 s12 ladoDir">
-
-          <div class="iphonex">
-			<div class="front">
-				<div class="screen">
-					<div class="screen__view">
-            <div class="notifierBar">12:50</div>
-
-            <div class="areaMsg">
-              <div class="msg" id="msgPreview">
-                Sua mensagem ira a aparecer assim...
-              </div>
-            </div>
-						
-					</div>
-					<div class="screen__front">
-						<div class="screen__front-speaker"></div>
-						<div class="screen__front-camera"></div>
-					</div>
-				</div>
-				<div class="front__line"></div>
-				<div class="front__line front__line-second"></div>
-			</div>
-			<div class="phoneButtons phoneButtons-right"></div>
-			<div class="phoneButtons phoneButtons-left"></div>
-			<div class="phoneButtons phoneButtons-left2"></div>
-			<div class="phoneButtons phoneButtons-left3"></div>
-			<div class="back"></div>
-		</div>
-
-          <div class="preview col s12">
-            <div class="hrPreview"></div>
-            <div class="perfil">
-              <div class="foto"></div>
-              <div class="number" id="telefonePreview">+55 92 9 1234-1234</div>
-            </div>
-            <div class="areaMsg">
-              <div class="msg" id="msgPreview">
-                Sua mensagem ira a aparecer assim...
-              </div>
-            </div>
-            <div class="btnSend">
-              <div class="textMensage"><i   class="material-icons">insert_emoticon</i>Digite  sua Mensagem</div>
-              <div class="send"><i class="material-icons">send</i></div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"></script>
-<script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-  <script src="script.js"></script>
+    <nav>
+        <div class="nav-wrapper teal">
+            <div class="content">
+                <a href="#!" class="brand-logo center">Auto Msg</a>
+                <ul id="nav-mobile" class="right ">
+                    <li><a href="#!"><i   class="material-icons">nights_stay</i></a></li>
+                </ul>
+                <ul id="nav-mobile" class="left ">
+                    <li><a href="#!" id="toggleFavorite"><i   class="material-icons">star_border</i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="telaApp">
+        <div class="content">
+            <div class="row">
+                <div class="col m8 s12 ladoEsq">
+                    <div class="col s12">
+                        <a class="waves-effect waves-light btn disabled">Modelo de mensagens</a>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">comment</i>
+                        <input id="msg" type="text" class="validate " placeholder="Sua mensagem...">
+                        <label for="msg">Mensagem</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">phone</i>
+                        <input inputmode="numeric" id="telefone" type="text" class="validate  celular" placeholder="9 1234-1234">
+                        <label for="telefone">Telefone</label>
+                    </div>
+                    <div class="col s12 center mbtn">
+                        <a class="waves-effect waves-light btn-small  " onclick="proximo(-1)"> <i class="material-icons">keyboard_arrow_left</i></a>
+                        <a class="waves-effect waves-light btn-small" id="ligar"><i class="material-icons">call</i></a>
+                        <a class="waves-effect waves-light btn-small" id="enviarMsg"><i class="fab fa-whatsapp"></i></a>
+                        <a class="waves-effect waves-light btn-small" onclick="proximo(+1)"> <i class="material-icons">keyboard_arrow_right</i></a>
+                    </div>
+                </div>
+
+                <div class="col m4 s12 ladoDir">
+                    <div class="main">
+                        <div class="iphonex">
+                            <div class="front">
+                                <div class="screen">
+                                    <div class="screen__view">
+                                        <div class="notifierBar">
+                                            <div class="ladoEsqBar">
+                                                <div class="time">12:50</div>
+                                            </div>
+                                            <div class="ladoDirBar">
+                                                <ion-icon name="cellular-outline"></ion-icon>
+                                                <ion-icon name="wifi-outline"></ion-icon>
+                                                <ion-icon name="battery-full-outline"></ion-icon>
+                                            </div>
+                                        </div>
+
+                                        <div class="tela">
+
+                                            <div class="perfil">
+                                                <div class="foto">AM</div>
+                                                <div class="number" id="telefonePreview">+55 92 9 1234-1234</div>
+                                                <div class="textoPerfil">Ilustração de como aparece a mensagem</div>
+                                            </div>
+
+                                            <div class="bolhas">
+                                                <div>Hoje</div>
+                                            </div>
+
+                                            <div class="areaMsg">
+                                                <div class="msg" id="msgPreview">
+                                                    Sua mensagem ira a aparecer assim...
+                                                </div>
+                                            </div>
+
+                                            <div class="btnSend">
+                                                <div class="textMensage"><i class="material-icons">insert_emoticon</i>Digite sua Mensagem</div>
+                                                <div class="send"><i class="material-icons">send</i></div>
+                                            </div>
+
+                                        </div>
+                                        <div class="stickerBar"></div>
+
+                                    </div>
+                                    <div class="screen__front">
+                                        <div class="screen__front-speaker"></div>
+                                        <div class="screen__front-camera"></div>
+                                    </div>
+                                </div>
+                                <div class="front__line"></div>
+                                <div class="front__line front__line-second"></div>
+                            </div>
+                            <div class="phoneButtons phoneButtons-right"></div>
+                            <div class="phoneButtons phoneButtons-left"></div>
+                            <div class="phoneButtons phoneButtons-left2"></div>
+                            <div class="phoneButtons phoneButtons-left3"></div>
+                            <div class="back"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
