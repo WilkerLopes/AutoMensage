@@ -1,6 +1,6 @@
 // valores da tabela
 var tabledata = [];
-
+var idTable = 0;
 var numCll = mensage = validation = "";
 var ligar = false;
 var toggleFav = localStorage.getItem("tgFav");
@@ -78,10 +78,12 @@ function enviarMsg() {
 }
 
 function proximo(numN) {
+
     if (numCll.length == 11) {
         var numberCalc = numCll.substring(2, 11);
         var numberCalc = numberCalc.split("-");
         if (numN > 0) {
+            idTable++;
             if (numberCalc[1] == 9999) {
                 numberCalc[0]++;
                 numberCalc[1] = 0000;
@@ -94,9 +96,12 @@ function proximo(numN) {
             cometario
             */
 
-            table.addData([{ numero: "92 9 " + numberCalc[0] + "-" + numberCalc[1], cometario: "" }]);
+            //table.updateOrAddData([{ numero: "92 9 " + numberCalc[0] + "-" + numberCalc[1], cometario: "" }]);
+
+            table.updateOrAddData([{ id: idTable, numero: "92 9 " + numberCalc[0] + "-" + numberCalc[1], cometario: "" }]);
 
         } else {
+            idTable--;
             if (numberCalc[1] == 9999) {
                 numberCalc[0]--;
                 numberCalc[1] = 0000;
@@ -149,6 +154,11 @@ var table = new Tabulator("#example-table", {
     ],
     columns: [ //define the table columns
         {
+            title: "ID",
+            field: "id",
+            width: 15,
+            editor: "input"
+        }, {
             title: "Número",
             field: "numero",
             width: 150,
