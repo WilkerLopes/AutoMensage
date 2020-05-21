@@ -1,3 +1,6 @@
+// valores da tabela
+var tabledata = [];
+
 var numCll = mensage = validation = "";
 var ligar = false;
 var toggleFav = localStorage.getItem("tgFav");
@@ -14,10 +17,6 @@ if (toggleFav == true) {
 }
 
 $(document).ready(() => {
-
-
-
-
     $("#msgPreview").hide();
     $('.celular').mask('0 0000-0000', { placeholder: "9 1234-1234" });
 
@@ -73,7 +72,7 @@ $(document).ready(() => {
 
 function enviarMsg() {
     var link = "https://api.whatsapp.com/send?phone=5592" + numCll + "&text=" + mensage + " ";
-    var call = "tel:5592" + numCll;
+    var call = "tel:+5592" + numCll;
     $("#enviarMsg").attr("href", link);
     $("#ligar").attr("href", call);
 }
@@ -89,6 +88,14 @@ function proximo(numN) {
             } else {
                 numberCalc[1]++;
             }
+
+            /* 
+            numero
+            cometario
+            */
+
+            table.addData([{ numero: "92 9 " + numberCalc[0] + "-" + numberCalc[1], cometario: "" }]);
+
         } else {
             if (numberCalc[1] == 9999) {
                 numberCalc[0]--;
@@ -103,8 +110,7 @@ function proximo(numN) {
     } else {
         M.toast({ html: 'Digite um número para continuar' });
     }
-}
-
+};
 
 function relogio() {
     hrAtual = new Date();
@@ -119,3 +125,64 @@ function relogio() {
     requestAnimationFrame(relogio);
 }
 relogio();
+
+$("#toggleDark").click(() => {
+    $("body").toggleClass("dark");
+});
+
+
+// Tabela Create
+var table = new Tabulator("#example-table", {
+    data: tabledata, //load row data from array
+    layout: "fitColumns", //fit columns to width of table
+    responsiveLayout: "hide", //hide columns that dont fit on the table
+    tooltips: true, //show tool tips on cells
+    addRowPos: "top", //when adding a new row, add it to the top of the table
+    history: true, //allow undo and redo actions on the table
+    pagination: "local", //paginate the data
+    paginationSize: 7, //allow 7 rows per page of data
+    initialSort: [ //set the initial sort order of the data
+        {
+            column: "numero",
+            dir: "dsc"
+        },
+    ],
+    columns: [ //define the table columns
+        {
+            title: "Número",
+            field: "numero",
+            width: 150,
+            editor: "input"
+        }, {
+            title: "Cometário",
+            field: "cometario",
+            editor: "select",
+            editorParams: {
+                values: ["Inexistente", "Indisponível", "Mandar Link", "Ligar mais tarde"]
+            }
+        },
+    ],
+});
+
+function baixarExcel() {
+    table.download("xlsx", "lista11_20-05.xlsx", { sheetName: "Lista 11" });
+}
+
+function baixarPDF() {
+    table.download("pdf", "data.pdf", {
+        orientation: "portrait", //set page orientation to portrait
+        autoTable: function(doc) {
+            //doc - the jsPDF document object
+
+            //add some text to the top left corner of the PDF
+            doc.text("SOME TEXT", 1, 1);
+
+            //return the autoTable config options object
+            return {
+                styles: {
+                    fillColor: [200, 00, 00]
+                },
+            };
+        },
+    });
+}
