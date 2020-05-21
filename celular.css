@@ -70,15 +70,6 @@
     position: absolute;
 }
 
-.title {
-    color: rgba(255, 255, 255, 0.07);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    position: absolute;
-    transition: opacity 0.4s;
-}
-
 .iphonex {
     font-family: "SF Display";
     font-weight: 400;
@@ -267,17 +258,4 @@
     left: 0;
     top: calc( 25% + 6em);
     height: 5em;
-}
-
-@media (max-height: 40em) {
-    body {
-        font-size: 70%;
-    }
-    .iphonex {
-        width: 48vh;
-        height: 94vh;
-    }
-    .title .title__svg svg text {
-        font-size: 4em;
-    }
 }
