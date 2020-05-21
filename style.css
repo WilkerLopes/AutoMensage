@@ -133,7 +133,6 @@ nav {
 .ladoEsq,
 .ladoDir {
     height: calc(100vh - 56px);
-    overflow: hidden;
     position: relative;
 }
 
