@@ -3,20 +3,11 @@ var tabledata = [];
 var idTable = 0;
 var numCll = mensage = validation = "";
 var ligar = false;
-var toggleFav = localStorage.getItem("tgFav");
-if (toggleFav == null) {
-    toggleFav = false;
-} else {
-    toggleFav = true;
-}
-console.log(toggleFav);
-if (toggleFav == true) {
-    $("#toggleFavorite").html("<i class='material-icons'>star</i>");
-} else {
-    $("#toggleFavorite").html("<i class='material-icons'>star_border</i>");
-}
 
 $(document).ready(() => {
+    $(".preloader").hide();
+    $('.modal').modal();
+
     $("#msgPreview").hide();
     $('.celular').mask('0 0000-0000', { placeholder: "9 1234-1234" });
 
@@ -66,8 +57,6 @@ $(document).ready(() => {
         }
         toggleFav = localStorage.getItem("tgFav");
     });
-
-    $(".preloader").hide();
 });
 
 function enviarMsg() {
@@ -78,7 +67,6 @@ function enviarMsg() {
 }
 
 function proximo(numN) {
-
     if (numCll.length == 11) {
         var numberCalc = numCll.substring(2, 11);
         var numberCalc = numberCalc.split("-");
@@ -91,14 +79,7 @@ function proximo(numN) {
                 numberCalc[1]++;
             }
 
-            /* 
-            numero
-            cometario
-            */
-
-            //table.updateOrAddData([{ numero: "92 9 " + numberCalc[0] + "-" + numberCalc[1], cometario: "" }]);
-
-            table.updateOrAddData([{ id: idTable, numero: "92 9 " + numberCalc[0] + "-" + numberCalc[1], cometario: "" }]);
+            table.updateOrAddData([{ id: idTable, numero: "92 9 " + numberCalc[0] + "-" + numberCalc[1] }]);
 
         } else {
             idTable--;
@@ -118,26 +99,34 @@ function proximo(numN) {
 };
 
 function relogio() {
-    hrAtual = new Date();
-    hora = hrAtual.getHours();
-    minuto = hrAtual.getMinutes();
-    segundo = hrAtual.getSeconds();
+    var hora = new Date();
 
-    horaImprimivel = hora + " : " + minuto;
+    horaAtual = hora.toLocaleTimeString();
+    hA = horaAtual.split(":");
+    horaAtual = hA[0] + ":" + hA[1];
 
-    $(".time").text(horaImprimivel);
+    $(".time").text(horaAtual);
 
     requestAnimationFrame(relogio);
 }
-relogio();
 
-$("#toggleDark").click(() => {
-    $("body").toggleClass("dark");
-});
+function dataAtual() {
+    var data = new Date();
+
+    dataAtual = data.toLocaleDateString();
+    dA = dataAtual.split("/");
+    dataAtual = dA[2] + "/" + dA[1] + "/" + dA[0];
+    dataPrint = dA[0] + "-" + dA[1] + "-" + dA[2];
+
+    $("#currentDate").val(dataAtual);
+}
+
+dataAtual();
+relogio();
 
 
 // Tabela Create
-var table = new Tabulator("#example-table", {
+var table = new Tabulator("#table-historico", {
     data: tabledata, //load row data from array
     layout: "fitColumns", //fit columns to width of table
     responsiveLayout: "hide", //hide columns that dont fit on the table
@@ -145,7 +134,12 @@ var table = new Tabulator("#example-table", {
     addRowPos: "top", //when adding a new row, add it to the top of the table
     history: true, //allow undo and redo actions on the table
     pagination: "local", //paginate the data
-    paginationSize: 7, //allow 7 rows per page of data
+    paginationSize: 5, //allow 7 rows per page of data
+    rowFormatter: function(row) {
+        if (row.getData().id == "3") {
+            row.getElement().classList.add("warning"); //mark rows with age less than 18 with a warning state;
+        }
+    },
     initialSort: [ //set the initial sort order of the data
         {
             column: "numero",
@@ -156,12 +150,11 @@ var table = new Tabulator("#example-table", {
         {
             title: "ID",
             field: "id",
-            width: 15,
-            editor: "input"
+            width: 100
         }, {
             title: "Número",
             field: "numero",
-            width: 150,
+            width: 200,
             editor: "input"
         }, {
             title: "Cometário",
@@ -175,24 +168,31 @@ var table = new Tabulator("#example-table", {
 });
 
 function baixarExcel() {
-    table.download("xlsx", "lista11_20-05.xlsx", { sheetName: "Lista 11" });
+    let nameList = $("#numLista").val();
+    if (nameList != null || nameList != "") {
+        table.download("xlsx", nameList + "_" + dataPrint + ".xlsx", { sheetName: nameList });
+    }
 }
 
 function baixarPDF() {
-    table.download("pdf", "data.pdf", {
-        orientation: "portrait", //set page orientation to portrait
+    table.download("pdf", nameList + "_" + dataPrint + ".pdf", {
+        orientation: "portrait",
         autoTable: function(doc) {
-            //doc - the jsPDF document object
-
-            //add some text to the top left corner of the PDF
-            doc.text("SOME TEXT", 1, 1);
-
-            //return the autoTable config options object
-            return {
-                styles: {
-                    fillColor: [200, 00, 00]
-                },
-            };
+            doc.text(nameList, 1, 1);
         },
     });
+}
+
+var toggleOpem = 0;
+
+function historico() {
+    $(".historico").toggleClass("opem");
+
+    if (toggleOpem == 0) {
+        $(".iconToggle").css({ "transform": "rotate(180deg)" });
+        toggleOpem = 1;
+    } else {
+        $(".iconToggle").css({ "transform": "rotate(0deg)" });
+        toggleOpem = 0;
+    }
 }
