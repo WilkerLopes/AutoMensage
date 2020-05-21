@@ -170,15 +170,17 @@ var table = new Tabulator("#table-historico", {
 function baixarExcel() {
     let nameList = $("#numLista").val();
     if (nameList != null || nameList != "") {
-        table.download("xlsx", nameList + "_" + dataPrint + ".xlsx", { sheetName: nameList });
+        table.download("xlsx", "lista" + nameList + "_" + dataPrint + ".xlsx", { sheetName: "lista" + nameList });
+    } else {
+        M.toast({ html: 'Defina a lista' });
     }
 }
 
 function baixarPDF() {
-    table.download("pdf", nameList + "_" + dataPrint + ".pdf", {
+    table.download("pdf", "lista" + nameList + "_" + dataPrint + ".pdf", {
         orientation: "portrait",
         autoTable: function(doc) {
-            doc.text(nameList, 1, 1);
+            doc.text("lista" + nameList, 1, 1);
         },
     });
 }
