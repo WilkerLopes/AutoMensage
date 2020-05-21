@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <link href="https://unpkg.com/tabulator-tables@4.6.3/dist/css/tabulator.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/tabulator-tables@4.6.3/dist/css/semantic-ui/tabulator_semantic-ui.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="celular.css">
 </head>
@@ -16,7 +17,35 @@
 <body>
     <div class="preloader">
         <div class="preloader-wrapper big active">
-            <div class="spinner-layer spinner-teal-only">
+            <div class="spinner-layer spinner-yellow-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="preloader-wrapper active">
+            <div class="spinner-layer spinner-red-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="preloader-wrapper small active">
+            <div class="spinner-layer spinner-green-only">
                 <div class="circle-clipper left">
                     <div class="circle"></div>
                 </div>
@@ -30,78 +59,53 @@
         </div>
     </div>
 
-    <div class="navbar-fixed">
-        <nav>
-            <div class="nav-wrapper fixed teal">
-                <div class="content">
-                    <a class="brand-logo center">Auto Msg</a>
-                    <ul id="nav-mobile" class="right ">
-                        <li>
-                            <a class="toggleDark" id="toggleDark">
-                                <div class="circleE">
-                                    <div class="circleI teal"></div>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
+    <nav class=" z-depth-0">
+        <div class="nav-wrapper">
+            <div class="container">
+                <a class="nameApp center">Auto Mensagem</a>
+                <div class="right">
+                    <a class="waves-effect waves-light modal-trigger colorAlert" href="#modal1">
+                        <ion-icon name="alert-outline"></ion-icon>
+                    </a>
+                </div>
+                <div class="left">
+                    <a class="waves-effect waves-light btn-small  modal-trigger" href="#modal1">
+                        <ion-icon name="alert-outline"></ion-icon>
+                    </a>
                 </div>
             </div>
-        </nav>
-    </div>
+        </div>
+    </nav>
 
     <div class="telaApp">
-        <div class="content">
+        <div class="container">
             <div class="row">
                 <div class="col m8 s12 ladoEsq">
-
-                    <div class="fixed-action-btn">
-                        <a class="btn-floating btn-large teal">
-                            <i class="large material-icons">save_alt</i>
-                        </a>
-                        <ul>
-                            <li>
-                                <a onclick="baixarExcel()" class="btn-floating green darken-1">
-                                    <img src="https://img.icons8.com/ios/24/fafaff/ms-excel.png" />
-                                </a>
-                            </li>
-                            <li>
-                                <a onclick="baixarPDF()" class="btn-floating red darken-1">
-                                    <img src="https://img.icons8.com/ios/24/fafaff/pdf-2.png" />
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-
-
                     <div class="col s12">
                         <a class="waves-effect waves-light btn disabled">Modelo de mensagens</a>
                     </div>
+
                     <div class="divider"></div>
-                    <div class="input-field col s12">
+
+                    <div class="input-field col m6 s12">
                         <i class="material-icons prefix">comment</i>
-                        <input id="msg" type="text" class="validate " placeholder="Sua mensagem...">
+                        <input id="msg" type="text" class="validate" placeholder="Sua mensagem...">
                         <label for="msg">Mensagem</label>
                     </div>
-                    <div class="input-field col s12">
+                    <div class="input-field col m6 s12">
                         <i class="material-icons prefix">phone</i>
-                        <input inputmode="numeric" id="telefone" type="text" class="validate  celular" placeholder="9 1234-1234">
+                        <input inputmode="numeric" id="telefone" type="text" class="validate celular" placeholder="9 1234-1234">
                         <label for="telefone">Telefone</label>
                     </div>
                     <div class="col s12 center mbtn">
-                        <a class="waves-effect waves-light btn-small  " onclick="proximo(-1)"> <i class="material-icons">keyboard_arrow_left</i></a>
+                        <a class="waves-effect waves-light btn-small" onclick="proximo(-1)"> <i class="material-icons">keyboard_arrow_left</i></a>
                         <a class="waves-effect waves-light btn-small" id="ligar"><i class="material-icons">call</i></a>
                         <a class="waves-effect waves-light btn-small" id="enviarMsg"><i class="fab fa-whatsapp"></i></a>
                         <a class="waves-effect waves-light btn-small" onclick="proximo(+1)"> <i class="material-icons">keyboard_arrow_right</i></a>
                     </div>
-
-                    <div class="barraHistorico">
-                        <div id="example-table">
-                        </div>
-                    </div>
                 </div>
 
-                <div class="col m4 s12 ladoDir">
+                <div class="col m4 s12 ladoDir hide-on-small-only">
                     <div class="main">
                         <div class="iphonex">
                             <div class="front">
@@ -109,7 +113,7 @@
                                     <div class="screen__view">
                                         <div class="notifierBar">
                                             <div class="ladoEsqBar">
-                                                <div class="time">12:50</div>
+                                                <div class="time"></div>
                                             </div>
                                             <div class="ladoDirBar">
                                                 <ion-icon name="cellular-outline"></ion-icon>
@@ -173,12 +177,74 @@
         </div>
     </div>
 
+    <div id="hist" class="historico">
+        <nav data-target="hist" style="top: 0px;" onclick="historico()">
+            <div class="nav-wrapper grey darken-4">
+                <div class="container">
+                    <ul id="nav-mobile" class="left">
+                        <li>
+                            <a class="iconToggle">
+                                <ion-icon name="arrow-up-outline"></ion-icon>
+                            </a>
+                        </li>
+                    </ul>
+                    <a class="nameApp center">Histórico</a>
+                </div>
+            </div>
+        </nav>
 
+        <div class="container white">
+            <div class="row">
+                <div class="col s12">
+                    <div class="row">
+                        <div class="input-field col m6 s12">
+                            <ion-icon name="list-outline" class="prefix"></ion-icon>
+                            <input id="numLista" type="number" class="validate">
+                            <label for="numLista">Número da lista</label>
+                        </div>
+                        <div class="input-field col m6 s12">
+                            <ion-icon name="calendar-outline" class="prefix"></ion-icon>
+                            <input id="currentDate" type="date" class="validate">
+                            <label for="currentDate">Data</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <div class="container">
+            <div class="row">
+                <div id="table-historico">
+                </div>
+            </div>
+        </div>
 
+        <div class="container">
+            <div class="col s12 center mbtn">
+                <a onclick="baixarPDF()" class="btn waves-effect waves-light red darken-1">
+                    <img src="https://img.icons8.com/ios/24/fafaff/pdf-2.png" />Baixar PDF
+                </a>
+
+                <a onclick="baixarExcel()" class="btn waves-effect waves-light green darken-1">
+                    <img src="https://img.icons8.com/ios/24/fafaff/ms-excel.png" /> Baixar Excel
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Ajuda</h4>
+            <p>A bunch of text</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"></script>
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin=" anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
@@ -187,28 +253,6 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.0.5/jspdf.plugin.autotable.js"></script>
     <script type="text/javascript" src="https://oss.sheetjs.com/sheetjs/xlsx.full.min.js"></script>
     <script src="script.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('.pushpin').pushpin();
-        });
-
-        $('.pushpin-demo-nav').each(function() {
-            var $this = $(this);
-            var $target = $('#' + $(this).attr('data-target'));
-            $this.pushpin({
-                top: $target.offset().top,
-                bottom: $target.offset().top + $target.outerHeight() - $this.height()
-            });
-        });
-
-        document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('.fixed-action-btn');
-            var instances = M.FloatingActionButton.init(elems, {
-                direction: 'top',
-                hoverEnabled: false
-            });
-        });
-    </script>
 </body>
 
 </html>
