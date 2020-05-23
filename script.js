@@ -21,7 +21,7 @@ $("#telefone").change(() => {
     if (numCll.length != 11) {
         M.toast({ html: 'Numero incompleto!!' });
     } else {
-        enviarMsg();
+        enviarMsg(1);
         ligar = true;
     };
 });
@@ -29,6 +29,13 @@ $("#telefone").change(() => {
 $("#telefone").keyup(() => {
     numCll = "" + $("#telefone").val();
     $("#telefonePreview").text("+55 92 " + numCll);
+    if (numCll.length == 11) {
+        enviarMsg(1);
+        ligar = true;
+    } else {
+        enviarMsg(0)
+        ligar = false;
+    }
 });
 
 $("#msg").change(() => {
@@ -37,13 +44,13 @@ $("#msg").change(() => {
         M.toast({ html: 'Nenhuma mensagem definida!!' });
         $("#msgPreview").hide();
     };
-    enviarMsg();
+    enviarMsg(1);
 });
 
 $("#msg").keyup(() => {
     mensage = "" + $("#msg").val();
     $("#msgPreview").show().text(mensage);
-    enviarMsg();
+    enviarMsg(1);
 });
 
 $("#ligar").click(() => {
@@ -53,11 +60,18 @@ $("#ligar").click(() => {
 });
 
 
-function enviarMsg() {
-    var link = "https://api.whatsapp.com/send?phone=5592" + numCll + "&text=" + mensage + " ";
-    var call = "tel:+5592" + numCll;
-    $("#enviarMsg").attr("href", link);
-    $("#ligar").attr("href", call);
+function enviarMsg(cond) {
+    if (cond == 1) {
+        var link = "https://api.whatsapp.com/send?phone=5592" + numCll + "&text=" + mensage + " ";
+        var call = "tel:+5592" + numCll;
+        $("#enviarMsg").attr("href", link);
+        $("#ligar").attr("href", call);
+    } else {
+        var link = "";
+        var call = "";
+        $("#enviarMsg").removeAttr("href");
+        $("#ligar").removeAttr("href");
+    }
 }
 
 function proximo(numN) {
@@ -88,7 +102,7 @@ function proximo(numN) {
         }
         numCll = "9 " + numberCalc[0] + "-" + numberCalc[1];
         $("#telefone").val(numCll);
-        enviarMsg();
+        enviarMsg(1);
     } else {
         M.toast({ html: 'Digite um número para continuar' });
     }
@@ -224,5 +238,5 @@ function selectMsg(numberMsg) {
     let msg = $("#mensage" + numberMsg).text();
     $("#msg").val(msg);
     $("#msgPreview").show().text(msg);
-    enviarMsg();
+    enviarMsg(1);
 }
