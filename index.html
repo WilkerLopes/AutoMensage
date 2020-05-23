@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auto Mensagem</title>
+    <link rel="shortcut icon" href="AM.svg" type="image/x-icon">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
@@ -62,17 +63,18 @@
     <nav class=" z-depth-0">
         <div class="nav-wrapper">
             <div class="container">
-                <a class="nameApp center">Auto Mensagem</a>
-                <div class="right">
-                    <a class="waves-effect waves-light modal-trigger colorAlert" href="#modal1">
-                        <ion-icon name="alert-outline"></ion-icon>
-                    </a>
-                </div>
+                <a class="nameApp center hide-on-med-and-up">AutoMsg</a>
+                <a class="nameApp center hide-on-small-only">Auto Mensagem</a>
                 <div class="left">
-                    <a class="waves-effect waves-light btn-small  modal-trigger" href="#modal1">
+                    <img class="logoApp z-depth-1" src="AM.svg" alt="">
+                </div>
+                <!--
+                <div class="right">
+                    <a class="waves-effect waves-help btn-small modal-trigger" href="#modal1">
                         <ion-icon name="alert-outline"></ion-icon>
                     </a>
                 </div>
+                -->
             </div>
         </div>
     </nav>
@@ -80,32 +82,35 @@
     <div class="telaApp">
         <div class="container">
             <div class="row">
-                <div class="col m8 s12 ladoEsq">
+                <div class="col l8 m6 s12 ladoEsq">
                     <div class="col s12">
-                        <a class="waves-effect waves-light btn disabled">Modelo de mensagens</a>
+                        <a href="#modal2" class="waves-effect waves-light btn btnSelect modal-trigger">Modelo de mensagens</a>
                     </div>
 
-                    <div class="divider"></div>
-
-                    <div class="input-field col m6 s12">
+                    <div class="input-field col l6 s12">
                         <i class="material-icons prefix">comment</i>
                         <input id="msg" type="text" class="validate" placeholder="Sua mensagem...">
                         <label for="msg">Mensagem</label>
                     </div>
-                    <div class="input-field col m6 s12">
+                    <div class="input-field col l6 s12">
                         <i class="material-icons prefix">phone</i>
                         <input inputmode="numeric" id="telefone" type="text" class="validate celular" placeholder="9 1234-1234">
                         <label for="telefone">Telefone</label>
                     </div>
-                    <div class="col s12 center mbtn">
+                    <div class="col s12 center">
                         <a class="waves-effect waves-light btn-small" onclick="proximo(-1)"> <i class="material-icons">keyboard_arrow_left</i></a>
                         <a class="waves-effect waves-light btn-small" id="ligar"><i class="material-icons">call</i></a>
                         <a class="waves-effect waves-light btn-small" id="enviarMsg"><i class="fab fa-whatsapp"></i></a>
                         <a class="waves-effect waves-light btn-small" onclick="proximo(+1)"> <i class="material-icons">keyboard_arrow_right</i></a>
                     </div>
+
+                    <div class="col s12">
+                        <div id="table-view">
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col m4 s12 ladoDir hide-on-small-only">
+                <div class="col l4 m6 s12 ladoDir hide-on-small-only">
                     <div class="main">
                         <div class="iphonex">
                             <div class="front">
@@ -177,7 +182,7 @@
         </div>
     </div>
 
-    <div id="hist" class="historico">
+    <div id="hist" class="historico borderMedium">
         <nav data-target="hist" style="top: 0px;" onclick="historico()">
             <div class="nav-wrapper grey darken-4">
                 <div class="container">
@@ -193,43 +198,45 @@
             </div>
         </nav>
 
-        <div class="container white">
-            <div class="row">
-                <div class="col s12">
-                    <div class="row">
-                        <div class="input-field col m6 s12">
-                            <ion-icon name="list-outline" class="prefix"></ion-icon>
-                            <input id="numLista" type="number" class="validate">
-                            <label for="numLista">Número da lista</label>
-                        </div>
-                        <div class="input-field col m6 s12">
-                            <ion-icon name="calendar-outline" class="prefix"></ion-icon>
-                            <input id="currentDate" type="date" class="validate">
-                            <label for="currentDate">Data</label>
+        <div class="barraScroll">
+
+            <div class="container white barraSup borderMedium">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <ion-icon name="list-outline" class="prefix"></ion-icon>
+                                <input id="numLista" type="number" class="validate">
+                                <label for="numLista">Número da lista</label>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="container barraMed">
+                <div class="row">
+                    <div id="table-historico">
+                    </div>
+                </div>
+            </div>
+
         </div>
 
-        <div class="container">
-            <div class="row">
-                <div id="table-historico">
+
+        <div class="barraInferiorOpts">
+            <div class="container">
+                <div class="lineBtns">
+                    <a onclick="baixarPDF()" class="btn waves-effect waves-light downPDF">
+                        Baixar em PDF
+                    </a>
+                    <a onclick="baixarExcel()" class="btn waves-effect waves-light downExcel">
+                        Baixar em Excel
+                    </a>
                 </div>
             </div>
         </div>
 
-        <div class="container">
-            <div class="col s12 center mbtn">
-                <a onclick="baixarPDF()" class="btn waves-effect waves-light red darken-1">
-                    <img src="https://img.icons8.com/ios/24/fafaff/pdf-2.png" />Baixar PDF
-                </a>
-
-                <a onclick="baixarExcel()" class="btn waves-effect waves-light green darken-1">
-                    <img src="https://img.icons8.com/ios/24/fafaff/ms-excel.png" /> Baixar Excel
-                </a>
-            </div>
-        </div>
     </div>
 
     <!-- Modal Structure -->
@@ -240,6 +247,60 @@
         </div>
         <div class="modal-footer">
             <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+    </div>
+
+    <div id="modal2" class="modal bottom-sheet modal-fixed-footer">
+        <div class="modal-content">
+            <div class="container">
+                <h4>Mensagens</h4>
+                <p>Escolha uma revista de acordo o mensagem selecionada: </p>
+
+                <div onclick="selectMsg(1)" class="col s12 m7">
+                    <div class="card horizontal">
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <blockquote id="mensage1">Olá. Liguei recentemente para você, eu li o texto de Apocalipse 21:4, esta revista traz informações sobre o fim do sofrimento.</blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div onclick="selectMsg(2)" class="col s12 m7">
+                    <div class="card horizontal">
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <blockquote id="mensage2">Olá. Recetemente eu liguei, e li o texto de Jeremias 29:11, este artigo fala um pocuo mais sobre o futuro de esperança que nosso criador nos promete.</blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div onclick="selectMsg(3)" class="col s12 m7">
+                    <div class="card horizontal">
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <blockquote id="mensage3">Olá, esse é o link que lhe falei durante nossa ligação. No livro de mateus 6:34, nos ensina a não ficar ansioso. Esta revista nos mostra como podemos fazer isso.</blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div onclick="selectMsg(4)" class="col s12 m7">
+                    <div class="card horizontal">
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <blockquote id="mensage4">Eu liguei para você, e durante a ligação eu falei sobre o texto de Isaías 41:10. Este artigo nos ajuda a não ficar tão ansiosos.</blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="container">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat right">Escolher</a>
+            </div>
         </div>
     </div>
 
