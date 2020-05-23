@@ -93,34 +93,13 @@ body {
     --cor-blue-05: #82F8ED;
 }
 
-body.dark {
-    --cor-01: #000000;
-    --cor-02: #0d0d0d;
-    --cor-03: #f5f5f5;
-    --cor-04: #d1d1d1;
-    --cor-05: #fafaff;
-    --cor-06: #ffffff;
-    --cor-07: #bdbdbd;
-    /**/
-    --area-mens: #b3c2a6;
-    --barra-per: #171717;
-    --barra-not: #171717;
-    --msg-previ: #265148;
-    --bolhas: #458dc0;
-    --stick-bar: #fdfdfd;
-    --barra-inf: #171717;
-    --background-meg: #2e2e2e;
-    /**/
-    --btn: #304B57;
-    --btn-color: #F2F2F2;
-    --fab: #304B57;
-    --fab-color: #F2F2F2;
-    /**/
-    --cor-active: #84E8CD;
+.borderMedium {
+    border-radius: .28571rem;
 }
 
 body,
 html {
+    font-size: 16px;
     margin: 0;
     padding: 0;
     min-height: 100%;
@@ -136,10 +115,35 @@ nav {
     color: var(--cor-06);
     position: relative;
     user-select: none;
+    z-index: 111;
+}
+
+blockquote {
+    margin: 20px 0;
+    padding-left: 1.5rem;
+    border-left: 5px solid #2A5AF1;
+    color: #2F3136;
+    font-size: 0.8em;
+}
+
+.input-field i.active {
+    color: #4490F0;
 }
 
 .navbar-fixed {
     height: 56px;
+}
+
+.modal.bottom-sheet {
+    border-radius: .28571rem;
+    top: auto;
+    bottom: -100%;
+    margin: 0;
+    width: 100%;
+    height: 65% !important;
+    max-height: none;
+    will-change: bottom, opacity;
+    overflow: hidden;
 }
 
 nav .nameApp {
@@ -166,6 +170,32 @@ nav .nameApp::before {
     border-radius: 0 0 25px 25px;
 }
 
+nav .nav-wrapper .left,
+nav .nav-wrapper .right {
+    height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav .nav-wrapper .right a {
+    background-color: transparent;
+    color: red;
+}
+
+.waves-effect.waves-help .waves-ripple {
+    background-color: #4490F0a6;
+}
+
+.logoApp {
+    width: 36px;
+    height: 36px;
+    border-radius: 25px;
+    display: flex;
+    justify-self: center;
+    align-self: center;
+}
+
 .preloader-wrapper {
     position: absolute;
 }
@@ -176,15 +206,51 @@ nav .nameApp::before {
 
 .btn-small {
     border-radius: 30px;
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     padding: 0;
     line-height: 36px;
     margin: 0 4px;
+    margin-bottom: 20px;
+    border: 1px solid #82F8ED;
+    background-color: transparent;
+    color: var(--cor-07);
+}
+
+.btn-small:hover {
+    background-color: #82F8ED;
 }
 
 .telaApp {
-    margin-top: 8px;
+    position: absolute;
+    top: 56px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 56px - 48px);
+    overflow: auto;
+    z-index: 100;
+}
+
+
+/* Select Mensage */
+
+.btnSelect {
+    border-radius: 25px;
+    background-color: transparent;
+    height: 38px;
+    font-size: 0.9em;
+    font-weight: 300;
+    border: 1px solid #4490F0;
+    color: #4490F0;
+    margin: 16px auto;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.btnSelect:hover {
+    background-color: #2A5AF180;
+    color: #fafaff;
 }
 
 
@@ -192,10 +258,12 @@ nav .nameApp::before {
 
 .ladoEsq,
 .ladoDir {
-    height: calc(100vh - 56px - 56px);
+    margin-top: 4px;
+    height: calc(100vh - 120px);
     position: relative;
     background-color: transparent;
     position: relative;
+    padding: auto;
 }
 
 .ladoEsq {
@@ -270,9 +338,6 @@ nav .nameApp::before {
     height: calc(100% - 1.8em - 1.4em);
     position: absolute;
     top: 1.8em;
-    /*
-    background: url(https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png);
-    */
     background: var(--background-meg);
     background-position: center;
     background-size: cover;
@@ -431,55 +496,6 @@ nav .nameApp::before {
     background-color: var(--stick-bar);
 }
 
-#toggleDark ion-icon {
-    width: 24px;
-    height: 24px;
-}
-
-.toggleDark .circleE {
-    width: 32px;
-    height: 32px;
-    background-color: var(--cor-01);
-    overflow: hidden;
-    border-radius: 25px;
-    position: relative;
-}
-
-.toggleDark .circleE .circleI {
-    width: 32px;
-    height: 32px;
-    background-color: var(--cor-06);
-    overflow: hidden;
-    border-radius: 25px;
-    position: absolute;
-    top: 0%;
-    right: 0%;
-    transform: translate(25%, -25%);
-}
-
-
-/* Buttons */
-
-.btn-floating {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.btn-small {
-    background-color: var(--btn);
-    color: var(--btn-color);
-}
-
-.btn-floating {
-    background-color: var(--fab);
-    color: var(--fab-color);
-}
-
-.btn {
-    background-color: transparent;
-}
-
 
 /* Tabela */
 
@@ -492,26 +508,43 @@ nav .nameApp::before {
 
 .historico {
     position: absolute;
-    top: calc(100% - 56px);
+    top: calc(100% - 48px);
     left: 0;
     width: 100%;
-    height: 100%;
+    height: calc(100vh + 0.6rem);
     background-color: #3a3a3a;
     z-index: 999;
     transition: top 0.5s ease-out;
+    overflow: hidden;
 }
 
 .historico nav {
     color: #2A5AF1;
     cursor: pointer;
+    height: 48px;
 }
 
 .historico.opem {
-    top: 0;
+    top: -0.29rem;
+}
+
+.historico .nameApp {
+    font-size: 1.2em;
+    height: 48px;
 }
 
 .historico .nameApp::before {
-    top: 0;
+    top: 100%;
+}
+
+.historico .barraSup {
+    margin-top: 16px;
+}
+
+.historico .barraScroll {
+    width: 100%;
+    height: calc( 100% - 48px - 48px);
+    overflow: auto;
 }
 
 .iconToggle {
@@ -520,9 +553,8 @@ nav .nameApp::before {
     transition: all 0.25s 0.5s ease-in-out;
 }
 
-.boxTable {
-    width: 80%;
-    margin: 0 auto;
+.iconToggle.opem {
+    transform: rotate(180deg);
 }
 
 #example-table {
@@ -531,9 +563,93 @@ nav .nameApp::before {
 }
 
 .colorAlert {
-    color: red;
+    color: #D95B43;
     background-color: transparent;
     width: 32px;
     height: 32px;
     border-radius: 25px;
+}
+
+.barraInferiorOpts {
+    background-color: #2228;
+    width: 100%;
+    height: 48px;
+    position: absolute;
+    top: calc(100% - 48px);
+}
+
+.barraInferiorOpts .lineBtns {
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+    padding: 2px 0;
+}
+
+.barraInferiorOpts .lineBtns a.btn {
+    border-radius: 25px;
+    background-color: transparent;
+    height: 38px;
+    font-size: 0.9em;
+    font-weight: 300;
+    border: 1px solid #4490F0;
+    color: #4490F0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.barraInferiorOpts .lineBtns a.btn:hover {
+    background-color: #2A5AF180;
+    color: #fafaff;
+}
+
+.barraInferiorOpts .lineBtns a.btn img {
+    margin-left: 4px;
+}
+
+
+/* 
+Scroll
+*/
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-button {
+    width: 0px;
+    height: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #82F8ED;
+    border: 0px none #ffffff;
+    border-radius: 50px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #5bffef;
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: #53f8e8;
+}
+
+::-webkit-scrollbar-track {
+    background: none;
+    border: 0px none #ffffff;
+    border-radius: 50px;
+}
+
+::-webkit-scrollbar-track:hover {
+    background: none;
+}
+
+::-webkit-scrollbar-track:active {
+    background: none;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
 }
