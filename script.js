@@ -224,4 +224,5 @@ function selectMsg(numberMsg) {
     let msg = $("#mensage" + numberMsg).text();
     $("#msg").val(msg);
     $("#msgPreview").show().text(msg);
+    enviarMsg();
 }
