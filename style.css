@@ -571,6 +571,7 @@ nav .nav-wrapper .right a {
     width: 100%;
     height: 48px;
     position: relative;
+    margin-bottom: 20px;
 }
 
 .barraInferiorOpts .lineBtns {
