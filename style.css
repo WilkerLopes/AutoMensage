@@ -126,10 +126,6 @@ blockquote {
     font-size: 0.8em;
 }
 
-.input-field i.active {
-    color: #4490F0;
-}
-
 .navbar-fixed {
     height: 56px;
 }
@@ -652,4 +648,47 @@ Scroll
 
 ::-webkit-scrollbar-corner {
     background: transparent;
+}
+
+
+/* Forms 
+label color 
+*/
+
+.input-field label {
+    color: #2F3136;
+}
+
+
+/* label focus color */
+
+.input-field input:focus+label {
+    color: #4490F0 !important;
+}
+
+
+/* label underline focus color */
+
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid #4490F0 !important;
+    box-shadow: 0 1px 0 0 #3338;
+}
+
+
+/* valid color */
+
+.input-field input[type=text].valid {
+    border-bottom: 1px solid #4490F0;
+    box-shadow: 0 1px 0 0 #3338;
+}
+
+.input-field input[type=text].valid+label {
+    color: #4490F0 !important;
+}
+
+
+/* icon prefix focus color */
+
+.input-field .prefix.active {
+    color: #4490F0;
 }
