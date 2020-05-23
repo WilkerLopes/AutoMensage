@@ -7,57 +7,51 @@ var ligar = false;
 $(document).ready(() => {
     $(".preloader").hide();
     $('.modal').modal();
+    dataAtual();
+    relogio();
 
-    $("#msgPreview").hide();
     $('.celular').mask('0 0000-0000', { placeholder: "9 1234-1234" });
 
-    $("#telefone").change(() => {
-        numCll = "" + $("#telefone").val();
-        if (numCll.length != 11) {
-            M.toast({ html: 'Numero incompleto!!' });
-        } else {
-            enviarMsg();
-            ligar = true;
-        };
-    });
-
-    $("#telefone").keyup(() => {
-        numCll = "" + $("#telefone").val();
-        $("#telefonePreview").text("+55 92 " + numCll);
-    });
-
-    $("#msg").change(() => {
-        mensage = $("#msg").val();
-        if (mensage == null || mensage == "" || mensage == " " || mensage == "  " || mensage == "   " || mensage == "    ") {
-            M.toast({ html: 'Nenhuma mensagem definida!!' });
-            $("#msgPreview").hide();
-        };
-        enviarMsg();
-    });
-
-    $("#msg").keyup(() => {
-        mensage = "" + $("#msg").val();
-        $("#msgPreview").show().text(mensage);
-        enviarMsg();
-    });
-
-    $("#ligar").click(() => {
-        if (ligar == false) {
-            M.toast({ html: 'Digite um número para continuar' });
-        }
-    });
-
-    $("#toggleFavorite").click(() => {
-        if (toggleFav == true) {
-            $("#toggleFavorite").html("<i class='material-icons'>star_border</i>");
-            localStorage.setItem("tgFav", false);
-        } else {
-            $("#toggleFavorite").html("<i class='material-icons'>star</i>");
-            localStorage.setItem("tgFav", true);
-        }
-        toggleFav = localStorage.getItem("tgFav");
-    });
+    $("#msgPreview").hide();
 });
+
+
+$("#telefone").change(() => {
+    numCll = "" + $("#telefone").val();
+    if (numCll.length != 11) {
+        M.toast({ html: 'Numero incompleto!!' });
+    } else {
+        enviarMsg();
+        ligar = true;
+    };
+});
+
+$("#telefone").keyup(() => {
+    numCll = "" + $("#telefone").val();
+    $("#telefonePreview").text("+55 92 " + numCll);
+});
+
+$("#msg").change(() => {
+    mensage = $("#msg").val();
+    if (mensage == null || mensage == "" || mensage == " " || mensage == "  " || mensage == "   " || mensage == "    ") {
+        M.toast({ html: 'Nenhuma mensagem definida!!' });
+        $("#msgPreview").hide();
+    };
+    enviarMsg();
+});
+
+$("#msg").keyup(() => {
+    mensage = "" + $("#msg").val();
+    $("#msgPreview").show().text(mensage);
+    enviarMsg();
+});
+
+$("#ligar").click(() => {
+    if (ligar == false) {
+        M.toast({ html: 'Digite um número para continuar' });
+    }
+});
+
 
 function enviarMsg() {
     var link = "https://api.whatsapp.com/send?phone=5592" + numCll + "&text=" + mensage + " ";
@@ -72,14 +66,16 @@ function proximo(numN) {
         var numberCalc = numberCalc.split("-");
         if (numN > 0) {
             idTable++;
+
+            tableView.updateOrAddData([{ id: idTable, numero: "92 9 " + numberCalc[0] + "-" + numberCalc[1] }]);
+            table.updateOrAddData([{ id: idTable, numero: "92 9 " + numberCalc[0] + "-" + numberCalc[1] }]);
+
             if (numberCalc[1] == 9999) {
                 numberCalc[0]++;
                 numberCalc[1] = 0000;
             } else {
                 numberCalc[1]++;
             }
-
-            table.updateOrAddData([{ id: idTable, numero: "92 9 " + numberCalc[0] + "-" + numberCalc[1] }]);
 
         } else {
             idTable--;
@@ -121,25 +117,16 @@ function dataAtual() {
     $("#currentDate").val(dataAtual);
 }
 
-dataAtual();
-relogio();
 
-
-// Tabela Create
-var table = new Tabulator("#table-historico", {
-    data: tabledata, //load row data from array
+// Tabela de Vizualização
+var tableView = new Tabulator("#table-view", {
     layout: "fitColumns", //fit columns to width of table
     responsiveLayout: "hide", //hide columns that dont fit on the table
     tooltips: true, //show tool tips on cells
     addRowPos: "top", //when adding a new row, add it to the top of the table
     history: true, //allow undo and redo actions on the table
     pagination: "local", //paginate the data
-    paginationSize: 5, //allow 7 rows per page of data
-    rowFormatter: function(row) {
-        if (row.getData().id == "3") {
-            row.getElement().classList.add("warning"); //mark rows with age less than 18 with a warning state;
-        }
-    },
+    paginationSize: 6,
     initialSort: [ //set the initial sort order of the data
         {
             column: "numero",
@@ -150,7 +137,45 @@ var table = new Tabulator("#table-historico", {
         {
             title: "ID",
             field: "id",
-            width: 100
+            width: 50,
+            responsive: 1
+        }, {
+            title: "Número",
+            field: "numero",
+            width: 120,
+            editor: "input",
+            responsive: 0
+        }, {
+            title: "Cometário",
+            field: "cometario",
+            editor: "select",
+            editorParams: {
+                values: ["Inexistente", "Indisponível", "Mandar Link", "Ligar mais tarde", "Desligou", "Criança", "Revisita"]
+            },
+            responsive: 0
+        },
+    ],
+});
+// Tabela de Historico
+var table = new Tabulator("#table-historico", {
+    data: tabledata, //load row data from array
+    layout: "fitColumns", //fit columns to width of table
+    responsiveLayout: "hide", //hide columns that dont fit on the table
+    tooltips: true, //show tool tips on cells
+    addRowPos: "top", //when adding a new row, add it to the top of the table
+    pagination: "local", //paginate the data
+    paginationSize: 6,
+    initialSort: [ //set the initial sort order of the data
+        {
+            column: "numero",
+            dir: "asc"
+        },
+    ],
+    columns: [ //define the table columns
+        {
+            title: "ID",
+            field: "id",
+            width: 75
         }, {
             title: "Número",
             field: "numero",
@@ -161,7 +186,7 @@ var table = new Tabulator("#table-historico", {
             field: "cometario",
             editor: "select",
             editorParams: {
-                values: ["Inexistente", "Indisponível", "Mandar Link", "Ligar mais tarde"]
+                values: ["Inexistente", "Indisponível", "Mandar Link", "Ligar mais tarde", "Desligou", "Criança", "Revisita"]
             }
         },
     ],
@@ -170,31 +195,33 @@ var table = new Tabulator("#table-historico", {
 function baixarExcel() {
     let nameList = $("#numLista").val();
     if (nameList != null || nameList != "") {
-        table.download("xlsx", "lista" + nameList + "_" + dataPrint + ".xlsx", { sheetName: "lista" + nameList });
+        table.download("xlsx", "Lista" + nameList + "_" + dataPrint + ".xlsx", { sheetName: "Lista" + nameList });
     } else {
         M.toast({ html: 'Defina a lista' });
     }
 }
 
 function baixarPDF() {
-    table.download("pdf", "lista" + nameList + "_" + dataPrint + ".pdf", {
+    let nameList = $("#numLista").val();
+    table.download("pdf", "Lista" + nameList + "_" + dataPrint + ".pdf", {
         orientation: "portrait",
-        autoTable: function(doc) {
-            doc.text("lista" + nameList, 1, 1);
-        },
     });
 }
 
-var toggleOpem = 0;
-
 function historico() {
     $(".historico").toggleClass("opem");
-
-    if (toggleOpem == 0) {
-        $(".iconToggle").css({ "transform": "rotate(180deg)" });
-        toggleOpem = 1;
-    } else {
-        $(".iconToggle").css({ "transform": "rotate(0deg)" });
-        toggleOpem = 0;
+    $(".iconToggle").toggleClass("opem");
+    console.log(idTable);
+    for (let cont = 1; cont <= idTable; cont++) {
+        let idRow = tableView.getRow(cont).getData().id;
+        let numberRow = tableView.getRow(cont).getData().numero;
+        let comentRow = tableView.getRow(cont).getData().cometario;
+        table.updateOrAddData([{ id: idRow, cometario: comentRow }]);
     }
+}
+
+function selectMsg(numberMsg) {
+    let msg = $("#mensage" + numberMsg).text();
+    $("#msg").val(msg);
+    $("#msgPreview").show().text(msg);
 }
