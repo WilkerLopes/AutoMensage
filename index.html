@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#4490F0">
     <meta name="apple-mobile-web-app-status-bar-style" content="#4490F0">
     <meta name="msapplication-navbutton-color" content="#4490F0">
+    <meta name="theme-color" content="#4490F0">
+
     <title>Auto Mensagem</title>
+
     <link rel="shortcut icon" href="AM.svg" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-    <link href="https://unpkg.com/tabulator-tables@4.6.3/dist/css/tabulator.min.css" rel="stylesheet">
-    <link href="https://unpkg.com/tabulator-tables@4.6.3/dist/css/semantic-ui/tabulator_semantic-ui.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/tabulator-tables@4.6.3/dist/css/tabulator.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/tabulator-tables@4.6.3/dist/css/semantic-ui/tabulator_semantic-ui.min.css">
     <link rel="stylesheet" href="celular.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -203,15 +204,17 @@
         </nav>
 
         <div class="barraScroll">
-
             <div class="container white barraSup borderMedium">
                 <div class="row">
                     <div class="col s12">
                         <div class="row">
-                            <div class="input-field col s12">
-                                <ion-icon name="list-outline" class="prefix"></ion-icon>
-                                <input id="numLista" type="number" class="validate">
+                            <div class="input-field col s6">
+                                <input id="numLista" inputmode="numeric" type="text" class="validate">
                                 <label for="numLista">Número da lista</label>
+                            </div>
+                            <div class="input-field col s6" id="dateViewBox">
+                                <input id="dateVeiw" inputmode="numeric" type="text" class="validate data">
+                                <label for="dateVeiw">Data</label>
                             </div>
                         </div>
                     </div>
@@ -235,12 +238,7 @@
                     </a>
                 </div>
             </div>
-
         </div>
-
-
-
-
     </div>
 
     <!-- Modal Structure -->
@@ -258,13 +256,13 @@
         <div class="modal-content">
             <div class="container">
                 <h4>Mensagens</h4>
-                <p>Escolha uma revista de acordo o mensagem selecionada: </p>
+                <p>Escolha uma revista de acordo o mensagem selecionada:</p>
 
                 <div onclick="selectMsg(1)" class="col s12 m7">
                     <div class="card horizontal">
                         <div class="card-stacked">
                             <div class="card-content">
-                                <blockquote id="mensage1">Olá. Liguei recentemente para você, eu li o texto de Apocalipse 21:4, esta revista traz informações sobre o fim do sofrimento.</blockquote>
+                                <blockquote id="mensage1">Olá. Liguei recentemente para você, e li o texto de *Apocalipse 21:4*. Esta revista fala mais sobre a promessa do fim do sofrimento.</blockquote>
                             </div>
                         </div>
                     </div>
@@ -274,7 +272,7 @@
                     <div class="card horizontal">
                         <div class="card-stacked">
                             <div class="card-content">
-                                <blockquote id="mensage2">Olá. Recetemente eu liguei, e li o texto de Jeremias 29:11, este artigo fala um pocuo mais sobre o futuro de esperança que nosso criador nos promete.</blockquote>
+                                <blockquote id="mensage2">Olá. Recentemente eu liguei, e li o texto de *Jeremias 29:11*, este artigo mostra um pocuo mais sobre o futuro de esperança que nosso criador nos promete.</blockquote>
                             </div>
                         </div>
                     </div>
@@ -284,7 +282,7 @@
                     <div class="card horizontal">
                         <div class="card-stacked">
                             <div class="card-content">
-                                <blockquote id="mensage3">Olá, esse é o link que lhe falei durante nossa ligação. No livro de mateus 6:34, nos ensina a não ficar ansioso. Esta revista nos mostra como podemos fazer isso.</blockquote>
+                                <blockquote id="mensage3">Olá, esse é o link que lhe falei durante nossa ligação. Em *Mateus 6:34*, nos ajuda a não ficar ansioso. Esta revista nos mostra como podemos fazer isso.</blockquote>
                             </div>
                         </div>
                     </div>
@@ -294,7 +292,7 @@
                     <div class="card horizontal">
                         <div class="card-stacked">
                             <div class="card-content">
-                                <blockquote id="mensage4">Eu liguei para você, e durante a ligação eu falei sobre o texto de Isaías 41:10. Este artigo nos ajuda a não ficar tão ansiosos.</blockquote>
+                                <blockquote id="mensage4">Eu liguei para você, e durante a ligação citei o texto de *Isaías 41:10*. Este artigo nos ajuda a não ficar tão ansiosos.</blockquote>
                             </div>
                         </div>
                     </div>
@@ -308,15 +306,15 @@
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"></script>
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin=" anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.0.5/jspdf.plugin.autotable.js"></script>
     <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.6.3/dist/js/tabulator.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.0.5/jspdf.plugin.autotable.js"></script>
-    <script type="text/javascript" src="https://oss.sheetjs.com/sheetjs/xlsx.full.min.js"></script>
+    <script src="https://unpkg.com/tabulator-tables@4.6.3/dist/js/tabulator.min.js"></script>
+    <script src="https://oss.sheetjs.com/sheetjs/xlsx.full.min.js"></script>
     <script src="script.js"></script>
 </body>
 
