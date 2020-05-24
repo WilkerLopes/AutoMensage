@@ -7,10 +7,12 @@ var ligar = false;
 $(document).ready(() => {
     $(".preloader").hide();
     $('.modal').modal();
+    $('.datepicker').datepicker();
     dataAtual();
     relogio();
 
     $('.celular').mask('0 0000-0000', { placeholder: "9 1234-1234" });
+    $('.data').mask('00/00/0000');
 
     $("#msgPreview").hide();
 });
@@ -124,13 +126,10 @@ function dataAtual() {
     var data = new Date();
 
     dataAtual = data.toLocaleDateString();
-    dA = dataAtual.split("/");
-    dataAtual = dA[2] + "/" + dA[1] + "/" + dA[0];
-    dataPrint = dA[0] + "-" + dA[1] + "-" + dA[2];
 
-    $("#currentDate").val(dataAtual);
+    $("#dateVeiw").val(dataAtual).toggleClass("valid");
+    $("#dateViewBox label").toggleClass("active");
 }
-
 
 // Tabela de Vizualização
 var tableView = new Tabulator("#table-view", {
@@ -160,7 +159,7 @@ var tableView = new Tabulator("#table-view", {
             editor: "input",
             responsive: 0
         }, {
-            title: "Cometário",
+            title: "Comentário",
             field: "cometario",
             editor: "select",
             editorParams: {
@@ -196,7 +195,7 @@ var table = new Tabulator("#table-historico", {
             width: 200,
             editor: "input"
         }, {
-            title: "Cometário",
+            title: "Comentário",
             field: "cometario",
             editor: "select",
             editorParams: {
@@ -238,5 +237,6 @@ function selectMsg(numberMsg) {
     let msg = $("#mensage" + numberMsg).text();
     $("#msg").val(msg);
     $("#msgPreview").show().text(msg);
+    mensage = "" + msg;
     enviarMsg(1);
 }
