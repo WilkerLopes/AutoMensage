@@ -535,6 +535,12 @@ nav .nav-wrapper .right a {
 
 .historico .barraSup {
     margin-top: 16px;
+    padding: 8px 0;
+}
+
+.historico .barraSup .row,
+.historico .barraSup .row .input-field {
+    margin-bottom: 0;
 }
 
 .historico .barraScroll {
@@ -671,7 +677,7 @@ label color
 
 .input-field input[type=text]:focus {
     border-bottom: 1px solid #4490F0 !important;
-    box-shadow: 0 1px 0 0 #3338;
+    box-shadow: 0 1px 0 0 #4490F080;
 }
 
 
@@ -679,7 +685,7 @@ label color
 
 .input-field input[type=text].valid {
     border-bottom: 1px solid #4490F0;
-    box-shadow: 0 1px 0 0 #3338;
+    box-shadow: 0 1px 0 0 #4490F080;
 }
 
 .input-field input[type=text].valid+label {
