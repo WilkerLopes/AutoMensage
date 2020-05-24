@@ -208,7 +208,7 @@ var table = new Tabulator("#table-historico", {
 function baixarExcel() {
     let nameList = $("#numLista").val();
     if (nameList != null || nameList != "") {
-        table.download("xlsx", "Lista" + nameList + "_" + dataPrint + ".xlsx", { sheetName: "Lista" + nameList });
+        table.download("xlsx", "Lista" + nameList + "_" + dataAtual + ".xlsx", { sheetName: "Lista" + nameList });
     } else {
         M.toast({ html: 'Defina a lista' });
     }
@@ -216,7 +216,7 @@ function baixarExcel() {
 
 function baixarPDF() {
     let nameList = $("#numLista").val();
-    table.download("pdf", "Lista" + nameList + "_" + dataPrint + ".pdf", {
+    table.download("pdf", "Lista" + nameList + "_" + dataAtual + ".pdf", {
         orientation: "portrait",
     });
 }
