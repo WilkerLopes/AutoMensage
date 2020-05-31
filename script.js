@@ -163,7 +163,7 @@ var tableView = new Tabulator("#table-view", {
             field: "cometario",
             editor: "select",
             editorParams: {
-                values: ["Inexistente", "Indisponível", "Mandar Link", "Ligar mais tarde", "Desligou", "Criança", "Revisita"]
+                values: ["Inexistente", "Indisponível", "Mandar Link", "Ligar depois", "Desligou", "Criança", "Revisita", "Não aceitou mensagem","Ocupado","Não aceitou link","O morador leu o texto"]
             },
             responsive: 0
         },
@@ -196,11 +196,7 @@ var table = new Tabulator("#table-historico", {
             editor: "input"
         }, {
             title: "Comentário",
-            field: "cometario",
-            editor: "select",
-            editorParams: {
-                values: ["Inexistente", "Indisponível", "Mandar Link", "Ligar mais tarde", "Desligou", "Criança", "Revisita"]
-            }
+            field: "cometario"
         },
     ],
 });
