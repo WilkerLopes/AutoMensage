@@ -163,7 +163,7 @@ var tableView = new Tabulator("#table-view", {
             field: "cometario",
             editor: "select",
             editorParams: {
-                values: ["Inexistente", "Indisponível", "Mandar Link", "Ligar depois", "Desligou", "Criança", "Revisita", "Não aceitou mensagem","Ocupado","Não aceitou link","O morador leu o texto"]
+                values: ["Inexistente", "Indisponível", "Mandar Link", "Ligar depois", "Desligou", "Criança", "Revisita", "Não aceitou mensagem","Ocupado","Não aceitou link","O morador leu o texto","Não tem Whatsapp"]
             },
             responsive: 0
         },
@@ -192,8 +192,7 @@ var table = new Tabulator("#table-historico", {
         }, {
             title: "Número",
             field: "numero",
-            width: 200,
-            editor: "input"
+            width: 200
         }, {
             title: "Comentário",
             field: "cometario"
@@ -203,18 +202,23 @@ var table = new Tabulator("#table-historico", {
 
 function baixarExcel() {
     let nameList = $("#numLista").val();
-    if (nameList != null || nameList != "") {
-        table.download("xlsx", "Lista" + nameList + "_" + dataAtual + ".xlsx", { sheetName: "Lista" + nameList });
-    } else {
+    if (nameList == null || nameList == ""|| nameList == " "|| nameList == "   ") {
         M.toast({ html: 'Defina a lista' });
+    } else {
+        table.download("xlsx", "Lista" + nameList + "_" + dataAtual + ".xlsx", { sheetName: "Lista" + nameList });
     }
 }
 
 function baixarPDF() {
     let nameList = $("#numLista").val();
-    table.download("pdf", "Lista" + nameList + "_" + dataAtual + ".pdf", {
-        orientation: "portrait",
-    });
+    if (nameList == null || nameList == ""|| nameList == " "|| nameList == "   ") {
+        M.toast({ html: 'Defina a lista' });
+    } else {
+        table.download("pdf", "Lista" + nameList + "_" + dataAtual + ".pdf", {
+            orientation: "portrait",
+        });
+    }
+    
 }
 
 function historico() {
