@@ -85,14 +85,14 @@ function proximo(numN) {
     if(numN > 0){
       if(numberCalc[1]==9999){
         numberCalc[0]++;
-        numberCalc[1]=0000;
+        numberCalc[1]='0000';
       }else{
         numberCalc[1]++;
       }
     }else{
       if(numberCalc[1]==9999){
         numberCalc[0]--;
-        numberCalc[1]=0000;
+        numberCalc[1]='0000';
       }else{
         numberCalc[1]--;
       }
