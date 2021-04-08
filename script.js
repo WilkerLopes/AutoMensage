@@ -28,7 +28,7 @@ $(document).ready(() => {
     } else {
       enviarMsg();
       ligar = true;
-    };
+    }
   });
 
   $("#telefone").keyup(() => {
@@ -41,7 +41,7 @@ $(document).ready(() => {
     if (mensage == null || mensage == "" || mensage == " " || mensage == "  " || mensage == "   " || mensage == "    ") {
       M.toast({ html: 'Nenhuma mensagem definida!!' });
       $("#msgPreview").hide();
-    };
+    }
     enviarMsg();
   });
 
