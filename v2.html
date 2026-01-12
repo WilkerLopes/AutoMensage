@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto Mensagem V2</title>
+
+  <!-- Fonts and Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+  <!-- Materialize CSS (for components/toasts, but styles overridden by style-v2.css) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Custom V2 Styles -->
+  <link rel="stylesheet" href="style-v2.css">
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div class="preloader">
+    <div class="preloader-wrapper big active">
+      <div class="spinner-layer spinner-teal-only">
+        <div class="circle-clipper left"><div class="circle"></div></div>
+        <div class="gap-patch"><div class="circle"></div></div>
+        <div class="circle-clipper right"><div class="circle"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo center">Auto Msg V2</a>
+      <ul class="left">
+        <li><a href="#!" id="toggleFavorite"><i class="material-icons">star_border</i></a></li>
+      </ul>
+      <ul class="right">
+          <!-- Link back to v1 for comparison -->
+          <li><a href="index.html" title="Go to V1">V1</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="main-container">
+
+    <!-- Config Panel -->
+    <div class="config-panel">
+      <h5>Configuração</h5>
+      <p class="grey-text">Configure sua mensagem automática.</p>
+
+      <div class="control-group input-field">
+        <i class="material-icons prefix">phone</i>
+        <input inputmode="numeric" id="telefone" type="text" class="validate celular" placeholder="9 1234-1234">
+        <label for="telefone">Telefone</label>
+        <span class="helper-text">DDD 92 é adicionado automaticamente</span>
+      </div>
+
+      <div class="control-group input-field">
+        <i class="material-icons prefix">comment</i>
+        <textarea id="msg" class="materialize-textarea" placeholder="Sua mensagem..."></textarea>
+        <label for="msg">Mensagem</label>
+      </div>
+
+      <div class="control-actions">
+        <div class="btn-floating-action" onclick="proximo(-1)" title="Número Anterior">
+          <i class="material-icons">keyboard_arrow_left</i>
+        </div>
+
+        <a id="ligar" class="btn-floating-action" title="Ligar">
+          <i class="material-icons">call</i>
+        </a>
+
+        <a id="enviarMsg" class="btn-floating-action btn-whatsapp" target="_blank" title="Enviar WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+
+        <div class="btn-floating-action" onclick="proximo(+1)" title="Próximo Número">
+          <i class="material-icons">keyboard_arrow_right</i>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Phone Preview -->
+    <div class="preview-panel">
+      <div class="phone-mockup">
+
+        <div class="screen">
+          <div class="status-bar">
+            <span class="hrPreview">12:00</span>
+            <span><i class="fas fa-signal"></i> <i class="fas fa-wifi"></i> <i class="fas fa-battery-three-quarters"></i></span>
+          </div>
+
+          <div class="screen-header">
+            <div class="header-left">
+                <i class="material-icons">arrow_back</i>
+                <div class="avatar">
+                   <i class="material-icons">person</i>
+                </div>
+                <div class="contact-info">
+                   <span class="contact-name" id="telefonePreview">+55 92 </span>
+                   <span style="font-size: 0.7rem; white-space: nowrap;">online hoje às <span class="hrPreview">12:00</span></span>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <i class="material-icons">videocam</i>
+                <i class="material-icons">call</i>
+                <i class="material-icons">more_vert</i>
+            </div>
+          </div>
+
+          <div class="screen-body">
+             <div class="msg-bubble" id="msgPreview">
+               Sua mensagem ira aparecer assim...
+             </div>
+          </div>
+
+          <div class="screen-footer">
+             <i class="material-icons grey-text">add</i>
+             <div class="input-mock">Digite sua mensagem</div>
+             <div class="send-btn-mock">
+               <i class="material-icons" style="font-size: 1.2rem;">mic</i>
+             </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+  <script src="script-v2.js"></script>
+
+</body>
+</html>
